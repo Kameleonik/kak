@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kalkulator Zużycia Prądu</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>🔌 Kalkulator Zużycia Prądu</h1>
+        <div class="calculator">
+            <div class="input-group">
+                <label for="power">Moc urządzenia (W):</label>
+                <input type="number" id="power" placeholder="np. 1500" min="0">
+            </div>
+            
+            <div class="input-group">
+                <label for="hours">Godziny użytkowania dziennie:</label>
+                <input type="number" id="hours" placeholder="np. 8" min="0" max="24" step="0.1">
+            </div>
+            
+            <div class="input-group">
+                <label for="days">Liczba dni:</label>
+                <input type="number" id="days" placeholder="np. 30" min="1" value="30">
+            </div>
+            
+            <div class="input-group">
+                <label for="price">Cena za kWh (zł):</label>
+                <input type="number" id="price" placeholder="np. 0.65" min="0" step="0.01" value="0.65">
+            </div>
+
+            <div class="input-group">
+                <label for="device-name">Nazwa urządzenia (opcjonalnie):</label>
+                <input type="text" id="device-name" placeholder="np. Telewizor w salonie">
+            </div>
+            
+            <div class="button-group">
+                <button onclick="calculate()">Oblicz zużycie</button>
+                <button onclick="saveCalculation()" class="save-btn" id="save-btn" disabled>💾 Zapisz obliczenie</button>
+            </div>
+            
+            <div id="results" class="results hidden">
+                <h3>Wyniki:</h3>
+                <div class="result-item">
+                    <span>Zużycie energii:</span>
+                    <span id="energy-consumption"></span>
+                </div>
+                <div class="result-item">
+                    <span>Koszt:</span>
+                    <span id="cost"></span>
+                </div>
+                <div class="result-item">
+                    <span>Koszt miesięczny:</span>
+                    <span id="monthly-cost"></span>
+                </div>
+                <div class="result-item">
+                    <span>Koszt roczny:</span>
+                    <span id="yearly-cost"></span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="saved-calculations" id="saved-calculations">
+            <h3>💾 Zapisane obliczenia</h3>
+            <div class="calculations-list" id="calculations-list">
+                <p class="no-calculations">Brak zapisanych obliczeń</p>
+            </div>
+            <div class="summary" id="summary" style="display: none;">
+                <div class="summary-item">
+                    <span>Łączne zużycie energii:</span>
+                    <span id="total-energy">0 kWh</span>
+                </div>
+                <div class="summary-item">
+                    <span>Łączny koszt miesięczny:</span>
+                    <span id="total-monthly">0 zł</span>
+                </div>
+                <div class="summary-item">
+                    <span>Łączny koszt roczny:</span>
+                    <span id="total-yearly">0 zł</span>
+                </div>
+            </div>
+            <button onclick="clearAllCalculations()" class="clear-btn" id="clear-btn" style="display: none;">🗑️ Wyczyść wszystkie</button>
+        </div>
+        
+        <div class="info">
+            <h3>💡 Przykładowe moce urządzeń:</h3>
+            <ul>
+                <li>Żarówka LED: 10-15W</li>
+                <li>Laptop: 50-100W</li>
+                <li>Telewizor: 100-400W</li>
+                <li>Lodówka: 150-300W</li>
+                <li>Pralka: 2000-2500W</li>
+                <li>Czajnik: 1500-3000W</li>
+            </ul>
+        </div>
+    </div>
+    
+    <script src="script.js"></script>
+</body>
+</html>
